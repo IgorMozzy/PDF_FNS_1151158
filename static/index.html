@@ -1,453 +1,292 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Заполнятор</title>
-    <style>
-
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/styles.css" rel="stylesheet">
 </head>
-<body style="background-color: #fdf6e3;
-             background-image: radial-gradient(circle, #ffe9a7 1px, transparent 1px);
-             background-size: 40px 40px;">
+<body>
 
 <div class="container-fluid mt-4">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="mb-4">Справка об оплате образовательных услуг для представления в налоговый орган (Форма по КНД 1151158)</h1>
+      <h1 class="mb-4">Справка об оплате образовательных услуг для представления в налоговый орган (Форма по КНД
+        1151158)</h1>
     </div>
-      <div class="row">
-            <div class="col-lg-6">
-      <div class="mb-4 p-4 border rounded bg-light shadow-sm">
-        <h2 class="mb-4">Получение данных из ХХ</h2>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="mb-4 p-4 border rounded bg-light shadow-sm">
+          <h2 class="mb-4">Получение данных из ХХ</h2>
 
-        <div class="mb-3">
-          <label for="api_subdomain" class="form-label">Субдомен:</label>
-          <input type="text" class="form-control" id="api_subdomain" name="api_subdomain">
-        </div>
+          <div class="mb-3">
+            <label for="api_subdomain" class="form-label">Субдомен:</label>
+            <input type="text" class="form-control" id="api_subdomain" name="api_subdomain">
+          </div>
 
-      <div class="row g-3 mb-3">
-        <div class="col-md-6">
-          <label for="api_login" class="form-label">Логин ХХ:</label>
-          <input type="text" class="form-control" id="api_login" name="api_login">
-        </div>
-        <div class="col-md-6">
-          <label for="api_password" class="form-label">Пароль ХХ:</label>
-          <input type="password" class="form-control" id="api_password" name="api_password">
-        </div>
-        <div class="col-md-6">
-          <label for="api_id" class="form-label">ID ученика ХХ:</label>
-          <input type="number" class="form-control" id="api_id" name="api_id">
-        </div>
-        <div class="col-md-6">
-          <label for="api_year" class="form-label">Год для запроса:</label>
-          <input type="number" class="form-control" id="api_year" name="api_year">
-        </div>
-      </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="api_login" class="form-label">Логин ХХ:</label>
+              <input type="text" class="form-control" id="api_login" name="api_login">
+            </div>
+            <div class="col-md-6">
+              <label for="api_password" class="form-label">Пароль ХХ:</label>
+              <input type="password" class="form-control" id="api_password" name="api_password">
+            </div>
+            <div class="col-md-6">
+              <label for="api_id" class="form-label">ID ученика ХХ:</label>
+              <input type="number" class="form-control" id="api_id" name="api_id">
+            </div>
+            <div class="col-md-6">
+              <label for="api_year" class="form-label">Год для запроса:</label>
+              <input type="number" class="form-control" id="api_year" name="api_year">
+            </div>
+          </div>
 
-      <button type="button" id="fetchApiButton" class="btn btn-success me-2">Получить из ХХ</button>
-    </div>
-
-    <!-- Форма для заполнения PDF -->
-    <form id="pdfForm" method="post" action="/fill_pdf/" class="mb-4 p-4 border rounded bg-light shadow-sm">
-      <h2 class="mb-4">Заполнение справки</h2>
-
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label for="org_inn" class="form-label">ИНН:</label>
-          <input type="text" class="form-control" name="org_inn" id="org_inn" placeholder="ИНН">
-        </div>
-        <div class="col-md-6">
-          <label for="org_kpp" class="form-label">КПП:</label>
-          <input type="text" class="form-control" name="org_kpp" id="org_kpp" placeholder="КПП">
+          <button type="button" id="fetchApiButton" class="btn btn-success me-2">Получить из ХХ</button>
         </div>
 
-        <div class="col-md-6">
-          <label for="doc_number" class="form-label">НОМЕР СПРАВКИ:</label>
-          <input type="text" class="form-control" name="doc_number" id="doc_number" placeholder="НОМЕР СПРАВКИ">
-        </div>
-        <div class="col-md-6">
-          <label for="correction_number" class="form-label">КОР:</label>
-          <input type="text" class="form-control" name="correction_number" id="correction_number" placeholder="-">
-        </div>
+        <!-- Форма для заполнения PDF -->
+        <form id="pdfForm" method="post" action="/fill_pdf/" class="mb-4 p-4 border rounded bg-light shadow-sm">
+          <h2 class="mb-4">Заполнение справки</h2>
 
-        <div class="col-md-6">
-          <label for="year" class="form-label">ГОД:</label>
-          <input type="text" class="form-control" name="year" id="year" placeholder="ГОД">
-        </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="org_inn" class="form-label">ИНН:</label>
+              <input type="text" class="form-control" name="org_inn" id="org_inn" placeholder="ИНН">
+            </div>
+            <div class="col-md-6">
+              <label for="org_kpp" class="form-label">КПП:</label>
+              <input type="text" class="form-control" name="org_kpp" id="org_kpp" placeholder="КПП">
+            </div>
 
-        <!-- Название орг (4 строки) -->
-        <div class="col-12">
-          <label for="org_name_1" class="form-label">НАЗВАНИЕ ОРГ.1:</label>
-          <input type="text" class="form-control" name="org_name_1" id="org_name_1" placeholder="НАЗВАНИЕ ОРГ. СТРОКА 1">
-        </div>
-        <div class="col-12">
-          <input type="text" class="form-control" name="org_name_2" id="org_name_2" placeholder="НАЗВАНИЕ ОРГ. СТРОКА 2">
-        </div>
-        <div class="col-12">
-          <input type="text" class="form-control" name="org_name_3" id="org_name_3" placeholder="НАЗВАНИЕ ОРГ. СТРОКА 3">
-        </div>
-        <div class="col-12">
-          <input type="text" class="form-control" name="org_name_4" id="org_name_4" placeholder="НАЗВАНИЕ ОРГ. СТРОКА 4">
-        </div>
+            <div class="col-md-6">
+              <label for="doc_number" class="form-label">НОМЕР СПРАВКИ:</label>
+              <input type="text" class="form-control" name="doc_number" id="doc_number" placeholder="НОМЕР СПРАВКИ">
+            </div>
+            <div class="col-md-6">
+              <label for="correction_number" class="form-label">КОР:</label>
+              <input type="text" class="form-control" name="correction_number" id="correction_number" placeholder="-">
+            </div>
 
-        <div class="col-md-6">
-          <label for="education_form" class="form-label">Форма обучения:</label>
-          <select class="form-select" name="education_form" id="education_form">
-            <option value="">-- выберите форму --</option>
-            <option value="0" selected>0 – Иная</option>
-            <option value="1">1 – Очная</option>
-          </select>
-        </div>
+            <div class="col-md-6">
+              <label for="year" class="form-label">ГОД:</label>
+              <input type="text" class="form-control" name="year" id="year" placeholder="ГОД">
+            </div>
 
-        <div class="col-md-6">
-          <label for="payer_last_name" class="form-label">Фамилия плательщика:</label>
-          <input type="text" class="form-control" name="payer_last_name" id="payer_last_name" placeholder="Фамилия плательщика">
-        </div>
-        <div class="col-md-6">
-          <label for="payer_first_name" class="form-label">Имя плательщика:</label>
-          <input type="text" class="form-control" name="payer_first_name" id="payer_first_name" placeholder="Имя плательщика">
-        </div>
-        <div class="col-md-6">
-          <label for="payer_middle_name" class="form-label">Отчество плательщика:</label>
-          <input type="text" class="form-control" name="payer_middle_name" id="payer_middle_name" placeholder="Отчество плательщика">
-        </div>
-        <div class="col-md-6">
-          <label for="payer_inn" class="form-label">ИНН плательщика:</label>
-          <input type="text" class="form-control" name="payer_inn" id="payer_inn" placeholder="ИНН плательщика">
-        </div>
+            <!-- Название орг (4 строки) -->
+            <div class="col-12">
+              <label for="org_name_1" class="form-label">НАЗВАНИЕ ОРГ.1:</label>
+              <input type="text" class="form-control" name="org_name_1" id="org_name_1"
+                     placeholder="НАЗВАНИЕ ОРГ. СТРОКА 1">
+            </div>
+            <div class="col-12">
+              <input type="text" class="form-control" name="org_name_2" id="org_name_2"
+                     placeholder="НАЗВАНИЕ ОРГ. СТРОКА 2">
+            </div>
+            <div class="col-12">
+              <input type="text" class="form-control" name="org_name_3" id="org_name_3"
+                     placeholder="НАЗВАНИЕ ОРГ. СТРОКА 3">
+            </div>
+            <div class="col-12">
+              <input type="text" class="form-control" name="org_name_4" id="org_name_4"
+                     placeholder="НАЗВАНИЕ ОРГ. СТРОКА 4">
+            </div>
 
-        <!-- Дата рождения -->
-        <div class="col-md-4">
-          <label for="payer_birth_date_full" class="form-label">Дата рождения плательщика:</label>
-          <input type="date" class="form-control" name="payer_birth_date_full" id="payer_birth_date_full">
-        </div>
+            <div class="col-md-6">
+              <label for="education_form" class="form-label">Форма обучения:</label>
+              <select class="form-select" name="education_form" id="education_form">
+                <option value="">-- выберите форму --</option>
+                <option value="0" selected>0 – Иная</option>
+                <option value="1">1 – Очная</option>
+              </select>
+            </div>
 
-        <!-- Код вида документа -->
-        <div class="col-12">
-          <label for="payer_doc_type" class="form-label">Код вида документа:</label>
-          <select class="form-select" name="payer_doc_type" id="payer_doc_type">
-            <option value="">-- выберите код --</option>
-            <option value="21">21 – Паспорт РФ</option>
-            <option value="03">03 – Свидетельство о рождении</option>
-            <option value="07">07 – Военный билет</option>
-            <option value="08">08 – Временное удостоверение вместо военного билета</option>
-            <option value="10">10 – Паспорт иностранного гражданина</option>
-            <option value="11">11 – Свидетельство о рассмотрении ходатайства</option>
-            <option value="12">12 – Вид на жительство</option>
-            <option value="13">13 – Удостоверение беженца</option>
-            <option value="14">14 – Временное удостоверение личности</option>
-            <option value="15">15 – Разрешение на временное проживание</option>
-            <option value="19">19 – Свидетельство о временном убежище</option>
-            <option value="23">23 – Свидетельство о рождении (иностранное)</option>
-            <option value="24">24 – Удостоверение личности военнослужащего</option>
-            <option value="27">27 – Военный билет офицера запаса</option>
-            <option value="91">91 – Иные документы</option>
-          </select>
-        </div>
+            <div class="col-md-6">
+              <label for="payer_last_name" class="form-label">Фамилия плательщика:</label>
+              <input type="text" class="form-control" name="payer_last_name" id="payer_last_name"
+                     placeholder="Фамилия плательщика">
+            </div>
+            <div class="col-md-6">
+              <label for="payer_first_name" class="form-label">Имя плательщика:</label>
+              <input type="text" class="form-control" name="payer_first_name" id="payer_first_name"
+                     placeholder="Имя плательщика">
+            </div>
+            <div class="col-md-6">
+              <label for="payer_middle_name" class="form-label">Отчество плательщика:</label>
+              <input type="text" class="form-control" name="payer_middle_name" id="payer_middle_name"
+                     placeholder="Отчество плательщика">
+            </div>
+            <div class="col-md-6">
+              <label for="payer_inn" class="form-label">ИНН плательщика:</label>
+              <input type="text" class="form-control" name="payer_inn" id="payer_inn" placeholder="ИНН плательщика">
+            </div>
+
+            <!-- Дата рождения -->
+            <div class="col-md-4">
+              <label for="payer_birth_date_full" class="form-label">Дата рождения плательщика:</label>
+              <input type="date" class="form-control" name="payer_birth_date_full" id="payer_birth_date_full">
+            </div>
+
+            <!-- Код вида документа -->
+            <div class="col-12">
+              <label for="payer_doc_type" class="form-label">Код вида документа:</label>
+              <select class="form-select" name="payer_doc_type" id="payer_doc_type">
+                <option value="">-- выберите код --</option>
+                <option value="21">21 – Паспорт РФ</option>
+                <option value="03">03 – Свидетельство о рождении</option>
+                <option value="07">07 – Военный билет</option>
+                <option value="08">08 – Временное удостоверение вместо военного билета</option>
+                <option value="10">10 – Паспорт иностранного гражданина</option>
+                <option value="11">11 – Свидетельство о рассмотрении ходатайства</option>
+                <option value="12">12 – Вид на жительство</option>
+                <option value="13">13 – Удостоверение беженца</option>
+                <option value="14">14 – Временное удостоверение личности</option>
+                <option value="15">15 – Разрешение на временное проживание</option>
+                <option value="19">19 – Свидетельство о временном убежище</option>
+                <option value="23">23 – Свидетельство о рождении (иностранное)</option>
+                <option value="24">24 – Удостоверение личности военнослужащего</option>
+                <option value="27">27 – Военный билет офицера запаса</option>
+                <option value="91">91 – Иные документы</option>
+              </select>
+            </div>
 
             <div class="col-md-6 doc-hidden d-none">
-                <label for="payer_doc_series" class="form-label">Серия и номер документа:</label>
-                <input type="text" class="form-control" name="payer_doc_series" id="payer_doc_series" placeholder="Введите серию и номер">
+              <label for="payer_doc_series" class="form-label">Серия и номер документа:</label>
+              <input type="text" class="form-control" name="payer_doc_series" id="payer_doc_series"
+                     placeholder="Введите серию и номер">
             </div>
 
             <div class="col-md-2 doc-hidden d-none">
-                <label for="payer_doc_issue_date_full" class="form-label">Дата выдачи:</label>
-                <input type="date" class="form-control" id="payer_doc_issue_date_full" name="payer_doc_issue_date_full">
+              <label for="payer_doc_issue_date_full" class="form-label">Дата выдачи:</label>
+              <input type="date" class="form-control" id="payer_doc_issue_date_full" name="payer_doc_issue_date_full">
             </div>
 
-        <!-- Чекбокс -->
-        <div class="mb-3">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="same_person" checked>
-            <label class="form-check-label" for="same_person">
-              Плательщик и обучаемый одно лицо?
-            </label>
-            <input type="hidden" name="same_person" id="same_person_hidden" value="1">
+            <!-- Чекбокс -->
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="same_person" checked>
+                <label class="form-check-label" for="same_person">
+                  Плательщик и обучаемый одно лицо?
+                </label>
+                <input type="hidden" name="same_person" id="same_person_hidden" value="1">
+              </div>
+            </div>
+
+            <!-- Поля ученика (по умолчанию скрыты) -->
+            <div class="col-md-4 student-hidden d-none">
+              <label for="student_last_name" class="form-label">Фамилия ученика:</label>
+              <input type="text" class="form-control" name="student_last_name" id="student_last_name"
+                     placeholder="Фамилия ученика">
+            </div>
+            <div class="col-md-4 student-hidden d-none">
+              <label for="student_first_name" class="form-label">Имя ученика:</label>
+              <input type="text" class="form-control" name="student_first_name" id="student_first_name"
+                     placeholder="Имя ученика">
+            </div>
+            <div class="col-md-4 student-hidden d-none">
+              <label for="student_middle_name" class="form-label">Отчество ученика:</label>
+              <input type="text" class="form-control" name="student_middle_name" id="student_middle_name"
+                     placeholder="Отчество ученика">
+            </div>
+
+            <div class="col-md-4 student-hidden d-none">
+              <label for="student_inn" class="form-label">ИНН ученика:</label>
+              <input type="text" class="form-control" name="student_inn" id="student_inn" placeholder="ИНН ученика">
+            </div>
+
+            <div class="col-md-4 student-hidden d-none">
+              <label for="student_birth_date_full" class="form-label">Дата рождения ученика:</label>
+              <input type="date" class="form-control" name="student_birth_date_full" id="student_birth_date_full">
+            </div>
+
+            <div class="col-md-6 student-hidden d-none">
+              <label for="student_doc_type" class="form-label">Код вида документа:</label>
+              <select class="form-select" name="student_doc_type" id="student_doc_type">
+                <option value="">-- выберите код --</option>
+                <option value="21">21 – Паспорт РФ</option>
+                <option value="03">03 – Свидетельство о рождении</option>
+                <option value="07">07 – Военный билет</option>
+                <option value="08">08 – Временное удостоверение вместо военного билета</option>
+                <option value="10">10 – Паспорт иностранного гражданина</option>
+                <option value="11">11 – Свидетельство о рассмотрении ходатайства</option>
+                <option value="12">12 – Вид на жительство</option>
+                <option value="13">13 – Удостоверение беженца</option>
+                <option value="14">14 – Временное удостоверение личности</option>
+                <option value="15">15 – Разрешение на временное проживание</option>
+                <option value="19">19 – Свидетельство о временном убежище</option>
+                <option value="23">23 – Свидетельство о рождении (иностранное)</option>
+                <option value="24">24 – Удостоверение личности военнослужащего</option>
+                <option value="27">27 – Военный билет офицера запаса</option>
+                <option value="91">91 – Иные документы</option>
+              </select>
+            </div>
+
+
+            <!-- Документ ученика (по умолчанию скрыт) -->
+            <div class="col-md-6 doc2-hidden d-none">
+              <label for="student_doc_series" class="form-label">Серия и номер его документа:</label>
+              <input type="text" class="form-control" name="student_doc_series" id="student_doc_series"
+                     placeholder="Серия и номер его документа">
+            </div>
+
+            <div class="col-md-6 doc2-hidden d-none">
+              <label for="student_doc_issue_date_full" class="form-label">Дата выдачи документа:</label>
+              <input type="date" class="form-control" name="student_doc_issue_date_full"
+                     id="student_doc_issue_date_full">
+            </div>
+
+
+            <div class="col-md-6">
+              <label for="amount_rub" class="form-label">Сумма расходов до точки:</label>
+              <input type="text" class="form-control" name="amount_rub" id="amount_rub"
+                     placeholder="Сумма расходов до точки">
+            </div>
+            <div class="col-md-6">
+              <label for="amount_kop" class="form-label">Сумма расходов после точки:</label>
+              <input type="text" class="form-control" name="amount_kop" id="amount_kop"
+                     placeholder="Сумма расходов после точки">
+            </div>
+
+            <div class="col-md-4">
+              <label for="org_head_last_name" class="form-label">Автор справки от орг. Фамилия:</label>
+              <input type="text" class="form-control" name="org_head_last_name" id="org_head_last_name"
+                     placeholder="Фамилия">
+            </div>
+            <div class="col-md-4">
+              <label for="org_head_first_name" class="form-label">Автор справки от орг. Имя:</label>
+              <input type="text" class="form-control" name="org_head_first_name" id="org_head_first_name"
+                     placeholder="Имя">
+            </div>
+            <div class="col-md-4">
+              <label for="org_head_middle_name" class="form-label">Автор справки от орг. Отчество:</label>
+              <input type="text" class="form-control" name="org_head_middle_name" id="org_head_middle_name"
+                     placeholder="Отчество">
+            </div>
+            <div class="col-md-4">
+              <label for="doc_date_full" class="form-label">Дата справки:</label>
+              <input type="date" class="form-control" name="doc_date_full" id="doc_date_full">
+            </div>
+            <div class="col-12 mt-3">
+              <button type="submit" class="btn btn-success me-2">Заполнить PDF</button>
+              <button type="button" id="clearFormButton" class="btn btn-outline-secondary">Очистить форму</button>
+            </div>
           </div>
-        </div>
-
-        <!-- Поля ученика (по умолчанию скрыты) -->
-          <div class="col-md-4 student-hidden d-none">
-            <label for="student_last_name" class="form-label">Фамилия ученика:</label>
-            <input type="text" class="form-control" name="student_last_name" id="student_last_name" placeholder="Фамилия ученика">
-          </div>
-          <div class="col-md-4 student-hidden d-none">
-            <label for="student_first_name" class="form-label">Имя ученика:</label>
-            <input type="text" class="form-control" name="student_first_name" id="student_first_name" placeholder="Имя ученика">
-          </div>
-          <div class="col-md-4 student-hidden d-none">
-            <label for="student_middle_name" class="form-label">Отчество ученика:</label>
-            <input type="text" class="form-control" name="student_middle_name" id="student_middle_name" placeholder="Отчество ученика">
-          </div>
-
-          <div class="col-md-4 student-hidden d-none">
-            <label for="student_inn" class="form-label">ИНН ученика:</label>
-            <input type="text" class="form-control" name="student_inn" id="student_inn" placeholder="ИНН ученика">
-          </div>
-
-          <div class="col-md-4 student-hidden d-none">
-            <label for="student_birth_date_full" class="form-label">Дата рождения ученика:</label>
-            <input type="date" class="form-control" name="student_birth_date_full" id="student_birth_date_full">
-          </div>
-
-          <div class="col-md-6 student-hidden d-none">
-            <label for="student_doc_type" class="form-label">Код вида документа:</label>
-            <select class="form-select" name="student_doc_type" id="student_doc_type">
-              <option value="">-- выберите код --</option>
-              <option value="21">21 – Паспорт РФ</option>
-              <option value="03">03 – Свидетельство о рождении</option>
-              <option value="07">07 – Военный билет</option>
-              <option value="08">08 – Временное удостоверение вместо военного билета</option>
-              <option value="10">10 – Паспорт иностранного гражданина</option>
-              <option value="11">11 – Свидетельство о рассмотрении ходатайства</option>
-              <option value="12">12 – Вид на жительство</option>
-              <option value="13">13 – Удостоверение беженца</option>
-              <option value="14">14 – Временное удостоверение личности</option>
-              <option value="15">15 – Разрешение на временное проживание</option>
-              <option value="19">19 – Свидетельство о временном убежище</option>
-              <option value="23">23 – Свидетельство о рождении (иностранное)</option>
-              <option value="24">24 – Удостоверение личности военнослужащего</option>
-              <option value="27">27 – Военный билет офицера запаса</option>
-              <option value="91">91 – Иные документы</option>
-            </select>
-          </div>
-
-
-        <!-- Документ ученика (по умолчанию скрыт) -->
-        <div class="col-md-6 doc2-hidden d-none">
-          <label for="student_doc_series" class="form-label">Серия и номер его документа:</label>
-          <input type="text" class="form-control" name="student_doc_series" id="student_doc_series" placeholder="Серия и номер его документа">
-        </div>
-
-        <div class="col-md-6 doc2-hidden d-none">
-          <label for="student_doc_issue_date_full" class="form-label">Дата выдачи документа:</label>
-          <input type="date" class="form-control" name="student_doc_issue_date_full" id="student_doc_issue_date_full">
-        </div>
-
-
-        <div class="col-md-6">
-          <label for="amount_rub" class="form-label">Сумма расходов до точки:</label>
-          <input type="text" class="form-control" name="amount_rub" id="amount_rub" placeholder="Сумма расходов до точки">
-        </div>
-        <div class="col-md-6">
-          <label for="amount_kop" class="form-label">Сумма расходов после точки:</label>
-          <input type="text" class="form-control" name="amount_kop" id="amount_kop" placeholder="Сумма расходов после точки">
-        </div>
-
-        <div class="col-md-4">
-          <label for="org_head_last_name" class="form-label">Автор справки от орг. Фамилия:</label>
-          <input type="text" class="form-control" name="org_head_last_name" id="org_head_last_name" placeholder="Фамилия">
-        </div>
-        <div class="col-md-4">
-          <label for="org_head_first_name" class="form-label">Автор справки от орг. Имя:</label>
-          <input type="text" class="form-control" name="org_head_first_name" id="org_head_first_name" placeholder="Имя">
-        </div>
-        <div class="col-md-4">
-          <label for="org_head_middle_name" class="form-label">Автор справки от орг. Отчество:</label>
-          <input type="text" class="form-control" name="org_head_middle_name" id="org_head_middle_name" placeholder="Отчество">
-        </div>
-        <div class="col-md-4">
-          <label for="doc_date_full" class="form-label">Дата справки:</label>
-          <input type="date" class="form-control" name="doc_date_full" id="doc_date_full">
-        </div>
-        <div class="col-12 mt-3">
-          <button type="submit" class="btn btn-success me-2">Заполнить PDF</button>
-          <button type="button" id="clearFormButton" class="btn btn-outline-secondary">Очистить форму</button>
-        </div>
+        </form>
       </div>
-    </form>
-  </div>
 
-    <div class="col-lg-6">
-      <div style="overflow-y: auto;">
-        <img src="/static/template_Page_1.png" class="img-fluid mb-3 border rounded" alt="Справка 1">
-        <img src="/static/template_Page_2.png" class="img-fluid border rounded" alt="Справка 2">
+      <div class="col-lg-6">
+        <div style="overflow-y: auto;">
+          <img src="/static/template_Page_1.png" class="img-fluid mb-3 border rounded" alt="Справка 1">
+          <img src="/static/template_Page_2.png" class="img-fluid border rounded" alt="Справка 2">
+        </div>
       </div>
     </div>
   </div>
 </div>
-  </div>
 
 <div class="mb-5"></div>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("pdfForm");
-  const allInputs = form.querySelectorAll("input, select");
 
-  const checkbox = document.getElementById("same_person");
-  const hiddenField = document.getElementById("same_person_hidden");
-
-  const payerDocType = document.getElementById("payer_doc_type");
-  const payerDocSeries = document.getElementById("payer_doc_series");
-  const payerDocFields = document.querySelectorAll(".doc-hidden");
-
-  const studentDocType = document.getElementById("student_doc_type");
-  const studentDocSeries = document.getElementById("student_doc_series");
-  const studentDocFields = document.querySelectorAll(".doc2-hidden");
-
-  const studentHiddenFields = document.querySelectorAll(".student-hidden");
-
-  // === Восстановление значений из localStorage ===
-  allInputs.forEach(input => {
-    const saved = localStorage.getItem(input.name);
-    if (saved !== null) {
-      if (input.type === "checkbox") {
-        input.checked = saved === "true";
-      } else {
-        input.value = saved;
-      }
-    }
-  });
-
-  // === Сохранение значений в localStorage ===
-  allInputs.forEach(input => {
-    input.addEventListener("change", () => {
-      if (input.type === "checkbox") {
-        localStorage.setItem(input.name, input.checked);
-      } else {
-        localStorage.setItem(input.name, input.value);
-      }
-    });
-  });
-
-  // Очистка формы и хранилища
-  document.getElementById("clearFormButton").addEventListener("click", () => {
-    allInputs.forEach(input => {
-      if (input.type === "checkbox") {
-        input.checked = false;
-      } else {
-        input.value = "";
-      }
-      localStorage.removeItem(input.name);
-    });
-
-    // Принудительно сбросить отображение
-    checkbox.checked = true;
-    hiddenField.value = "1";
-    toggleStudentFields();
-    payerDocFields.forEach(el => el.classList.add("d-none"));
-    studentDocFields.forEach(el => el.classList.add("d-none"));
-  });
-
-  // === Функция показа/скрытия полей ученика и его документов ===
-  function toggleStudentFields() {
-    const studentElements = document.querySelectorAll(".student-hidden");
-    const studentDocElements = document.querySelectorAll(".doc2-hidden");
-
-    if (checkbox.checked) {
-      studentElements.forEach(el => el.classList.add("d-none"));
-      studentDocElements.forEach(el => el.classList.add("d-none"));
-      hiddenField.value = "1";
-    } else {
-      studentElements.forEach(el => el.classList.remove("d-none"));
-      hiddenField.value = "0";
-
-      // Показываем поля документа ученика, если выбран тип
-      if (studentDocType.value !== "") {
-        studentDocElements.forEach(el => el.classList.remove("d-none"));
-      }
-    }
-  }
-
-  checkbox.addEventListener("change", toggleStudentFields);
-  toggleStudentFields(); // инициализация при загрузке
-
-  // === Подстановка API-данных ===
-  document.getElementById("fetchApiButton").addEventListener("click", async function () {
-    const year = document.getElementById("api_year").value;
-    const id = document.getElementById("api_id").value;
-    const subdomain = document.getElementById("api_subdomain").value;
-    const login = document.getElementById("api_login").value;
-    const password = document.getElementById("api_password").value;
-
-    if (!year || !id || !subdomain || !login || !password) {
-      alert("Введите данные для запроса к ХХ");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("year", year);
-    formData.append("id", id);
-    formData.append("subdomain", subdomain);
-    formData.append("login", login);
-    formData.append("password", password);
-
-    try {
-      const response = await fetch("/fetch_data", {
-        method: "POST",
-        body: formData
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        for (const key in data) {
-          const field = document.getElementById(key);
-          if (field) {
-            if (field.type === "checkbox") {
-              field.checked = data[key] === "true";
-            } else {
-              field.value = data[key];
-            }
-            localStorage.setItem(field.name, data[key]);
-          }
-        }
-
-        if ("same_person" in data) {
-          checkbox.checked = data["same_person"] === "1";
-          hiddenField.value = data["same_person"];
-          toggleStudentFields();
-        }
-
-        if (payerDocType.value !== "") {
-          payerDocFields.forEach(el => el.classList.remove("d-none"));
-          payerDocSeries?.setAttribute("required", "true");
-        }
-
-        if (!checkbox.checked && studentDocType.value !== "") {
-          studentDocFields.forEach(el => el.classList.remove("d-none"));
-          studentDocSeries?.setAttribute("required", "true");
-        }
-
-      } else {
-        alert("Ошибка при получении данных из API");
-      }
-    } catch (error) {
-      console.error("Ошибка запроса:", error);
-      alert("Ошибка выполнения запроса к API");
-    }
-  });
-
-  // === Обработчики изменения типа документа ===
-  payerDocType.addEventListener("change", function () {
-    if (this.value !== "") {
-      payerDocFields.forEach(el => el.classList.remove("d-none"));
-      payerDocSeries?.setAttribute("required", "true");
-    } else {
-      payerDocFields.forEach(el => el.classList.add("d-none"));
-      payerDocSeries?.removeAttribute("required");
-    }
-  });
-
-  studentDocType.addEventListener("change", function () {
-    if (checkbox.checked) {
-      // Не показываем поля документа, если чекбокс включён
-      studentDocFields.forEach(el => el.classList.add("d-none"));
-      studentDocSeries?.removeAttribute("required");
-      return;
-    }
-
-    if (this.value !== "") {
-      studentDocFields.forEach(el => el.classList.remove("d-none"));
-      studentDocSeries?.setAttribute("required", "true");
-    } else {
-      studentDocFields.forEach(el => el.classList.add("d-none"));
-      studentDocSeries?.removeAttribute("required");
-    }
-  });
-});
-</script>
+<script src="static/script.js"></script>
 </body>
 </html>
