@@ -12,6 +12,7 @@ from app.field_map import FIELD_NAMES, human_to_pdf
 from app.tools import split_date_fields
 
 
+# TODO: разделить на функции получения авторизации и парсинга
 async def fetch_and_prepare_data(year, id, subdomain, login, password):
     """
     Получение данных ученика и организации из внешнего API ХХ.

@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -61,3 +62,7 @@ async def fill_pdf(request: Request):
     """
     response = await fill_pdf_document(request)
     return response
+
+if __name__ == "__main__":
+    uvicorn.run("app.main:app", host=settings.host,
+                port=settings.port, reload=settings.reload)
